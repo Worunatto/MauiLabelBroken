@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiLabelBroken.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Loaded="ContentPage_Loaded">
+
+    <RefreshView
+        Margin="10"
+        IsRefreshing="{Binding IsBusy}"
+        Refreshing="RefreshView_Refreshing">
+        <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+            <CollectionView
+                HorizontalOptions="Fill"
+                ItemsSource="{Binding ChargeSites}"
+                SelectionMode="None"
+                VerticalOptions="Fill">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="10,2"
+                            Padding="0"
+                            BackgroundColor="White"
+                            BorderColor="#e8e8e8"
+                            CornerRadius="8">
+                            <Grid Margin="2" ColumnDefinitions="68, 1*, Auto, 12">
+                                <Image
+                                    Grid.Column="0"
+                                    HeightRequest="46"
+                                    HorizontalOptions="Center"
+                                    Source="dotnet_bot.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="46" />
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Margin="0,10,10,10"
+                                    HorizontalOptions="Fill"
+                                    IsClippedToBounds="True"
+                                    Spacing="6"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        Text="{Binding TitleText}"
+                                        VerticalOptions="Center" />
+                                    <Label Text="{Binding DetailText}" VerticalOptions="Center" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout
+                                    Grid.Column="2"
+                                    HorizontalOptions="Fill"
+                                    Spacing="6"
+                                    VerticalOptions="Center">
+                                    <Label HorizontalOptions="End" Text="{Binding Distance}" />
+                                    <Frame
+                                        Padding="4,2"
+                                        BackgroundColor="DodgerBlue"
+                                        BorderColor="Transparent"
+                                        CornerRadius="2"
+                                        HorizontalOptions="End"
+                                        WidthRequest="-1">
+                                        <Label LineBreakMode="TailTruncation">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding StateText}" TextColor="White" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Frame>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <BoxView HeightRequest="24" Color="#f4f5f7" />
+                </CollectionView.Footer>
+            </CollectionView>
+        </Grid>
+    </RefreshView>
+
+</ContentPage>
